@@ -11,28 +11,28 @@ import {
     Text,
 } from "@react-email/components";
 
-interface EmailResetPasswordTemplateProps {
+interface EmailVerificationTemplateProps {
     name: string;
-    resetUrl: string;
+    verificationUrl: string;
 }
 
 const baseUrl = process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
     : '';
 
-const EmailResetPasswordTemplate = ({
+const EmailVerificationTemplate = ({
     name = "Khách hàng",
-    resetUrl,
-}: EmailResetPasswordTemplateProps) => {
+    verificationUrl,
+}: EmailVerificationTemplateProps) => {
     return (
         <Html>
             <Head />
-            <Preview>Đặt lại mật khẩu của bạn - VPS Rental</Preview>
+            <Preview>Xác minh địa chỉ email của bạn - VPS Rental</Preview>
             <Body style={main}>
                 <Container style={container}>
                     <Section style={header}>
                         <Img
-                            src={`${baseUrl}/public/bg.png`}
+                            src={`${baseUrl}/static/bg.png`}
                             width="40"
                             height="40"
                             alt="VPS Rental"
@@ -42,56 +42,44 @@ const EmailResetPasswordTemplate = ({
                     </Section>
 
                     <Section style={content}>
-                        <Heading style={h2}>Đặt lại mật khẩu của bạn</Heading>
+                        <Heading style={h2}>Xác minh địa chỉ email của bạn</Heading>
 
                         <Text style={text}>
                             Xin chào {name},
                         </Text>
 
                         <Text style={text}>
-                            Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu cho tài khoản VPS Rental của bạn.
-                            Nếu bạn đã thực hiện yêu cầu này, vui lòng click vào nút bên dưới để tạo mật khẩu mới.
+                            Cảm ơn bạn đã đăng ký tài khoản tại VPS Rental! Để hoàn tất quá trình đăng ký và kích hoạt tài khoản của bạn, vui lòng xác minh địa chỉ email bằng cách click vào nút bên dưới.
                         </Text>
 
                         <Section style={buttonContainer}>
-                            <Button style={button} href={resetUrl}>
-                                Đặt lại mật khẩu
+                            <Button style={button} href={verificationUrl}>
+                                Xác minh Email
                             </Button>
                         </Section>
 
                         <Text style={smallText}>
                             Hoặc copy và dán link sau vào trình duyệt của bạn:
                         </Text>
-                        <Text style={linkText}>{resetUrl}</Text>
+                        <Text style={linkText}>{verificationUrl}</Text>
 
-                        <Section style={warningBox}>
-                            <Text style={warningTitle}>
-                                🔐 Thông tin bảo mật quan trọng:
-                            </Text>
-                            <Text style={warningText}>
-                                • Link đặt lại mật khẩu này sẽ hết hạn trong <strong>1 giờ</strong><br />
-                                • Link chỉ có thể sử dụng một lần duy nhất<br />
-                                • Nếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này<br />
-                                • Để bảo mật, không chia sẻ link này với bất kỳ ai
-                            </Text>
-                        </Section>
+                        <Text style={warningText}>
+                            ⚠️ Link xác minh này sẽ hết hạn trong 24 giờ.
+                        </Text>
 
                         <Text style={text}>
-                            <strong>Lưu ý bảo mật:</strong> Nếu bạn không thực hiện yêu cầu này,
-                            có thể ai đó đang cố gắng truy cập tài khoản của bạn. Trong trường hợp này,
-                            vui lòng đổi mật khẩu ngay lập tức và liên hệ với chúng tôi.
+                            Nếu bạn không đăng ký tài khoản này, vui lòng bỏ qua email này.
                         </Text>
 
                         <Text style={signature}>
                             Trân trọng,<br />
-                            VPS Rental Security Team
+                            VPS Rental Team
                         </Text>
                     </Section>
 
                     <Section style={footer}>
                         <Text style={footerText}>
-                            © 2025 VPS Rental. Tất cả quyền được bảo lưu.<br />
-                            Email này được gửi từ hệ thống bảo mật tự động.
+                            © 2025 VPS Rental. Tất cả quyền được bảo lưu.
                         </Text>
                     </Section>
                 </Container>
@@ -136,7 +124,7 @@ const content = {
 };
 
 const h2 = {
-    color: "#dc2626", // Red color for security/password reset
+    color: "#1f2937",
     fontSize: "20px",
     fontWeight: "600",
     margin: "32px 0 16px",
@@ -156,7 +144,7 @@ const buttonContainer = {
 };
 
 const button = {
-    backgroundColor: "#dc2626", // Red button for password reset
+    backgroundColor: "#2563eb",
     borderRadius: "6px",
     color: "#ffffff",
     fontSize: "16px",
@@ -176,7 +164,7 @@ const smallText = {
 };
 
 const linkText = {
-    color: "#dc2626", // Red link for security
+    color: "#2563eb",
     fontSize: "14px",
     textDecoration: "underline",
     wordBreak: "break-all" as const,
@@ -184,26 +172,12 @@ const linkText = {
     textAlign: "center" as const,
 };
 
-const warningBox = {
-    backgroundColor: "#fef2f2",
-    border: "1px solid #fecaca",
-    borderRadius: "8px",
-    padding: "16px",
-    margin: "24px 0",
-};
-
-const warningTitle = {
-    color: "#b91c1c",
+const warningText = {
+    color: "#dc2626",
     fontSize: "14px",
     fontWeight: "600",
-    margin: "0 0 8px 0",
-};
-
-const warningText = {
-    color: "#7f1d1d",
-    fontSize: "14px",
-    lineHeight: "20px",
-    margin: "0",
+    margin: "24px 0",
+    textAlign: "center" as const,
 };
 
 const signature = {
@@ -223,7 +197,6 @@ const footerText = {
     color: "#6b7280",
     fontSize: "12px",
     margin: "0",
-    lineHeight: "16px",
 };
 
-export default EmailResetPasswordTemplate;
+export default EmailVerificationTemplate;
