@@ -32,7 +32,7 @@ const EmailResetPasswordTemplate = ({
                 <Container style={container}>
                     <Section style={header}>
                         <Img
-                            src={`${baseUrl}/static/bg.png`}
+                            src={`${baseUrl}/emails/static/bg.png`}
                             width="40"
                             height="40"
                             alt="VPS Rental"
