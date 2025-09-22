@@ -16,10 +16,6 @@ interface EmailVerificationTemplateProps {
     verificationUrl: string;
 }
 
-const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : '';
-
 const EmailVerificationTemplate = ({
     name = "Khách hàng",
     verificationUrl,
@@ -32,7 +28,7 @@ const EmailVerificationTemplate = ({
                 <Container style={container}>
                     <Section style={header}>
                         <Img
-                            src={`${baseUrl}/emails/static/bg.png`}
+                            src="https://i.ibb.co/DPR4y16J/logo3.jpg"
                             width="40"
                             height="40"
                             alt="VPS Rental"
