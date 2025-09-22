@@ -5,20 +5,20 @@ import {
     Head,
     Heading,
     Html,
-    Img,
     Preview,
     Section,
     Text,
 } from "@react-email/components";
+import Image from "next/image";
 
 interface EmailVerificationTemplateProps {
     name: string;
     verificationUrl: string;
 }
 
-const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : '';
+// const baseUrl = process.env.VERCEL_URL
+//     ? `https://${process.env.VERCEL_URL}`
+//     : '';
 
 const EmailVerificationTemplate = ({
     name = "Khách hàng",
@@ -31,8 +31,8 @@ const EmailVerificationTemplate = ({
             <Body style={main}>
                 <Container style={container}>
                     <Section style={header}>
-                        <Img
-                            src={`${baseUrl}/public/bg.png`}
+                        <Image
+                            src="/bg.png"
                             width="40"
                             height="40"
                             alt="VPS Rental"
